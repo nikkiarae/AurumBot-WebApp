@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   basePath: isGithubPages ? '/frontend' : '',
   reactStrictMode: true,
   output: 'export',
+  distDir: 'docs'
 };
 
 export default nextConfig;
