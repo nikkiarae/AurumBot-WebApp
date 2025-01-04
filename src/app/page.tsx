@@ -1,95 +1,150 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from "react"
+import { Box, Button, Container, Typography, Grid, Paper } from '@mui/material';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(to right, #f5c842, #fff)',
+        textAlign: 'center',
+      }}
+    >
+      {/* Hero Section */}
+      <Container maxWidth="md">
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 'bold',
+            mb: 3,
+            color: '#333',
+          }}
+        >
+          Welcome to <span style={{ color: '#f5c842' }}>AurumBot</span>
+        </Typography>
+        <Typography variant="h6" sx={{ mb: 5, color: '#555' }}>
+          Your gateway to discovering the next big thing in crypto.
+        </Typography>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Call-to-Action */}
+        <Button
+          href="https://t.me/YourTelegramBot"
+          target="_blank"
+          variant="contained"
+          sx={{
+            backgroundColor: '#f5c842',
+            color: '#fff',
+            padding: '10px 20px',
+            fontSize: '1.2rem',
+            borderRadius: '50px',
+            '&:hover': {
+              backgroundColor: '#e5b73a',
+            },
+          }}
+        >
+          Launch AurumBot
+        </Button>
+      </Container>
+
+      {/* Pricing Section */}
+      <Box
+        sx={{
+          mt: 10,
+          py: 5,
+          width: '100%',
+          backgroundColor: '#fff',
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <Container maxWidth="lg">
+          <Typography
+            variant="h4"
+            sx={{
+              mb: 4,
+              fontWeight: 'bold',
+              color: '#333',
+            }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            Subscription Plans
+          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={6} md={4}>
+              <Paper
+                elevation={3}
+                sx={{
+                  p: 4,
+                  borderRadius: 4,
+                  textAlign: 'center',
+                  backgroundColor: '#f5f5f5',
+                }}
+              >
+                <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
+                  Basic
+                </Typography>
+                <Typography variant="h6" sx={{ mb: 3 }}>
+                  $10 / month
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 3 }}>
+                  Get access to real-time alerts for new and boosted tokens.
+                </Typography>
+                <Button
+                  href="https://t.me/YourTelegramBot"
+                  target="_blank"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#f5c842',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#e5b73a',
+                    },
+                  }}
+                >
+                  Subscribe Now
+                </Button>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <Paper
+                elevation={3}
+                sx={{
+                  p: 4,
+                  borderRadius: 4,
+                  textAlign: 'center',
+                  backgroundColor: '#f5f5f5',
+                }}
+              >
+                <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
+                  Premium
+                </Typography>
+                <Typography variant="h6" sx={{ mb: 3 }}>
+                  $25 / month
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 3 }}>
+                  Exclusive access to golden and insider token alerts.
+                </Typography>
+                <Button
+                  href="https://t.me/YourTelegramBot"
+                  target="_blank"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#f5c842',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#e5b73a',
+                    },
+                  }}
+                >
+                  Subscribe Now
+                </Button>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </Box>
   );
 }
