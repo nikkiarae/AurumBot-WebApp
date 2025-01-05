@@ -41,6 +41,7 @@ const AppLandingPage = () => {
   return (
     <Box
       sx={{
+        background: 'black',
         backgroundImage: `url(${background.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
