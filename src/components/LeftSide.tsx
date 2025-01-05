@@ -1,9 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { FC } from "react";
 
-interface LeftSideProps {}
-
-const LeftSide: FC<LeftSideProps> = () => {
+const LeftSide: FC = () => {
   return (
     <Box sx={{ textAlign: "center" }}>
       <Typography variant="h2" sx={{ fontWeight: "bold", color: "#fff" }}>

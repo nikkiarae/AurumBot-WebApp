@@ -1,12 +1,7 @@
 import React from "react";
 import {
   Box,
-  Typography,
-  Button,
   Grid2,
-  Card,
-  CardContent,
-  CardMedia,
   Container,
 } from "@mui/material";
 import background from "../assets/background.png";

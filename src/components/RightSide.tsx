@@ -1,9 +1,7 @@
-import { Box, Card, CardMedia, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import { FC } from "react";
 
-interface RightSideProps {}
-
-const RightSide: FC<RightSideProps> = () => {
+const RightSide: FC = () => {
     return (
       <Card
         elevation={2}
