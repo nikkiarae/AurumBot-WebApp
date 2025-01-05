@@ -1,150 +1,104 @@
-import React from "react"
-import { Box, Button, Container, Typography, Grid, Paper } from '@mui/material';
+import React from "react";
+import {
+  Box,
+  Typography,
+  Button,
+  Grid2,
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+} from "@mui/material";
+import background from "../assets/background.png";
+import FeatureCard from "@/components/FeatureCard";
+import { Feature } from "@/types/general";
+import LeftSide from "@/components/LeftSide";
+import RightSide from "@/components/RightSide";
 
-export default function Home() {
+const features: Feature[] = [
+  {
+    number: 1,
+    title: "Golden",
+    description:
+      'A "Golden" token is one that meets specific criteria for both performance and potential. It\'s marked as a premium pick with high success indicators.',
+  },
+  {
+    number: 2,
+    title: "New",
+    description:
+      '"New" tokens are recently created tokens, usually less than 6 hours old. They’re evaluated based on short-term performance metrics like buy-to-sell ratios, volume, and price changes.',
+  },
+  {
+    number: 3,
+    title: "Boosted",
+    description:
+      '"Boosted" tokens are gaining rapid attention and trading volume within a short timeframe. These tokens are experiencing significant activity and could indicate growing interest.',
+  },
+  {
+    number: 4,
+    title: "Insider",
+    description:
+      '"Insider" tokens are based on curated selections or insights provided by trusted sources or analysis. These are handpicked for their potential value.',
+  },
+];
+
+const AppLandingPage = () => {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(to right, #f5c842, #fff)',
-        textAlign: 'center',
+        backgroundImage: `url(${background.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      {/* Hero Section */}
-      <Container maxWidth="md">
-        <Typography
-          variant="h2"
+      <Container>
+        {/* Hero Section */}
+        <Container
+          maxWidth="lg"
           sx={{
-            fontWeight: 'bold',
-            mb: 3,
-            color: '#333',
+            display: "flex",
+            alignItems: "center",
+            padding: { xs: `60px 20px 0 20px`, md: `100px 70px 0 70px`},
           }}
         >
-          Welcome to <span style={{ color: '#f5c842' }}>AurumBot</span>
-        </Typography>
-        <Typography variant="h6" sx={{ mb: 5, color: '#555' }}>
-          Your gateway to discovering the next big thing in crypto.
-        </Typography>
+          <Grid2 container spacing={{ xs: 4, md: 8 }} alignItems={'center'}>
+            {/* Left Content */}
+            <Grid2 size={{ xs: 12, md: 8 }}>
+              <LeftSide />
+            </Grid2>
 
-        {/* Call-to-Action */}
-        <Button
-          href="https://t.me/YourTelegramBot"
-          target="_blank"
-          variant="contained"
-          sx={{
-            backgroundColor: '#f5c842',
-            color: '#fff',
-            padding: '10px 20px',
-            fontSize: '1.2rem',
-            borderRadius: '50px',
-            '&:hover': {
-              backgroundColor: '#e5b73a',
-            },
-          }}
-        >
-          Launch AurumBot
-        </Button>
-      </Container>
-
-      {/* Pricing Section */}
-      <Box
-        sx={{
-          mt: 10,
-          py: 5,
-          width: '100%',
-          backgroundColor: '#fff',
-          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-        }}
-      >
-        <Container maxWidth="lg">
-          <Typography
-            variant="h4"
-            sx={{
-              mb: 4,
-              fontWeight: 'bold',
-              color: '#333',
-            }}
-          >
-            Subscription Plans
-          </Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12} sm={6} md={4}>
-              <Paper
-                elevation={3}
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: 'center',
-                  backgroundColor: '#f5f5f5',
-                }}
-              >
-                <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
-                  Basic
-                </Typography>
-                <Typography variant="h6" sx={{ mb: 3 }}>
-                  $10 / month
-                </Typography>
-                <Typography variant="body2" sx={{ mb: 3 }}>
-                  Get access to real-time alerts for new and boosted tokens.
-                </Typography>
-                <Button
-                  href="https://t.me/YourTelegramBot"
-                  target="_blank"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: '#f5c842',
-                    color: '#fff',
-                    '&:hover': {
-                      backgroundColor: '#e5b73a',
-                    },
-                  }}
-                >
-                  Subscribe Now
-                </Button>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Paper
-                elevation={3}
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: 'center',
-                  backgroundColor: '#f5f5f5',
-                }}
-              >
-                <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
-                  Premium
-                </Typography>
-                <Typography variant="h6" sx={{ mb: 3 }}>
-                  $25 / month
-                </Typography>
-                <Typography variant="body2" sx={{ mb: 3 }}>
-                  Exclusive access to golden and insider token alerts.
-                </Typography>
-                <Button
-                  href="https://t.me/YourTelegramBot"
-                  target="_blank"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: '#f5c842',
-                    color: '#fff',
-                    '&:hover': {
-                      backgroundColor: '#e5b73a',
-                    },
-                  }}
-                >
-                  Subscribe Now
-                </Button>
-              </Paper>
-            </Grid>
-          </Grid>
+            {/* Right Image */}
+            <Grid2 size={{ xs: 12, md: 4 }}>
+              <RightSide />
+            </Grid2>
+          </Grid2>
         </Container>
-      </Box>
+
+        {/* Features Section */}
+        <Box sx={{ padding: {sm: "30px 0", md: "80px 0" }}}>
+          <Container maxWidth="lg">
+            <Grid2
+              container
+              spacing={3}
+              justifyContent="center"
+              alignItems="stretch"
+            >
+              {/* Features */}
+              {features.map((feature, idx) => (
+                <Grid2 key={idx} size={{ xs: 12, sm: 6, md: 3 }}>
+                  <FeatureCard feature={feature} />
+                </Grid2>
+              ))}
+            </Grid2>
+          </Container>
+        </Box>
+      </Container>
     </Box>
   );
-}
+};
+
+export default AppLandingPage;
