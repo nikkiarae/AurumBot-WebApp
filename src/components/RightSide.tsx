@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card } from "@mui/material";
 import { FC } from "react";
 
 const RightSide: FC = () => {
@@ -27,15 +27,19 @@ const RightSide: FC = () => {
             justifyContent: "center",
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{ color: "#FFD700", textAlign: "center", padding: "20px" }}
-          >
-            Video Placeholder <br /> (Responsive)
-          </Typography>
+          <video
+            src="../public/assets/video.mp4"
+            autoPlay 
+            loop
+            style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+            }}
+        />
         </Box>
       </Card>
     );
-  };
+};
 
 export default RightSide;
