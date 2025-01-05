@@ -4,7 +4,7 @@ import {
   Grid2,
   Container,
 } from "@mui/material";
-import background from "../assets/background.png";
+import background from "../public/assets/background.png";
 import FeatureCard from "@/components/FeatureCard";
 import { Feature } from "@/types/general";
 import LeftSide from "@/components/LeftSide";
