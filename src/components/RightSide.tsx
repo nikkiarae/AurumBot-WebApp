@@ -14,7 +14,7 @@ const RightSide: FC = () => {
           justifyContent: "center",
           borderRadius: "20px",
           backgroundColor: "#1c1c1c", // Matches the black theme
-          border: "2px solid #FFD700", // Gold border for style
+          border: "3px solid #FFD700", // Gold border for style
           margin: "0 auto", // Centers it horizontally
         }}
       >
@@ -28,15 +28,16 @@ const RightSide: FC = () => {
           }}
         >
           <video
-            src="../public/assets/video.mp4"
             autoPlay 
             loop
             style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain",
             }}
-        />
+        >
+             <source src="https://playpickleball.lon1.cdn.digitaloceanspaces.com/logos/video.MP4" type="video/mp4" />
+        </video>
         </Box>
       </Card>
     );
