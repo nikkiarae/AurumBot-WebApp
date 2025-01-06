@@ -1,5 +1,6 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { FC } from "react";
+import { FaStripe } from "react-icons/fa6";
 
 const LeftSide: FC = () => {
   return (
@@ -71,6 +72,23 @@ const LeftSide: FC = () => {
           Subscribe Now
         </Typography>
       </Button>
+      <Stack spacing={1} direction={'row'} justifyContent={'center'} alignItems={'center'} sx={{ textAlign: "center", mt: 2 }}>
+        {/* Stripe logo */}
+        
+        <Typography
+          variant="body1"
+          sx={{ color: "#666", marginTop: "10px" }}
+        >
+          Powered by
+        </Typography>
+        <FaStripe size={40}/>
+        <Typography
+          variant="body1"
+          sx={{ color: "#666", marginTop: "10px" }}
+        >
+          for secure payments.
+        </Typography>
+      </Stack>
     </Box>
   );
 };
