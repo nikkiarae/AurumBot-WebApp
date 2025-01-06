@@ -83,7 +83,7 @@ const AppLandingPage = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Stack spacing={3} sx={{ mb: 4 }}>
+      <Stack spacing={3} sx={{ mb: 4 }} alignItems={'center'}>
         {/* Hero Section */}
         <Container
           maxWidth="lg"
