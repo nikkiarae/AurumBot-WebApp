@@ -1,9 +1,10 @@
+import { MONGO_URI } from "@/lib/constants/config";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  output: 'export',
-  distDir: 'docs'
+  env: {
+    MONGO_URI: MONGO_URI
+  },
 };
 
 export default nextConfig;
