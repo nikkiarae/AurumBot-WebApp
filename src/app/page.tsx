@@ -10,13 +10,13 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import background from "../public/assets/background.png";
 import FeatureCard from "@/components/FeatureCard";
 import { Feature } from "@/types/general";
 import LeftSide from "@/components/LeftSide";
 import RightSide from "@/components/RightSide";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";
 import { AiOutlineDollar } from "react-icons/ai";
+import { TELEGRAM_URL } from "@/lib/constants/config";
 
 const features: Feature[] = [
   {
@@ -29,7 +29,7 @@ const features: Feature[] = [
     number: 2,
     title: "New",
     description:
-      '"New" tokens are recently created tokens, usually less than 6 hours old. They’re evaluated based on short-term performance metrics like buy-to-sell ratios, volume, and price changes.',
+      '"New" tokens are recently created tokens, usually less than 6 hours old. They\'re evaluated based on short-term performance metrics like buy-to-sell ratios, volume, and price changes.',
   },
   {
     number: 3,
@@ -50,7 +50,7 @@ const AppLandingPage = () => {
     <Box
       sx={{
         background: "black",
-        backgroundImage: `url(${background.src})`,
+        backgroundImage: `url(/assets/background.png)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -71,7 +71,7 @@ const AppLandingPage = () => {
           <Button
             color="inherit"
             variant="contained"
-            href="https://t.me/AurumCryptoBot"
+            href={TELEGRAM_URL}
             target="_blank"
             sx={{
               backgroundColor: "#DAA520",

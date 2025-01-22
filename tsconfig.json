@@ -26,6 +26,10 @@
       {
         "name": "next"
       }
+    ],
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types"
     ]
   },
   "include": [
@@ -33,8 +37,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "docs/types/**/*.ts",
-    "declaration.d.ts"
+    "docs/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
