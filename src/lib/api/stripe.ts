@@ -1,6 +1,6 @@
 export const generatePaymentLink = async (chatId: number): Promise<string | undefined> => {
     try {
-      const response = await fetch("/api/stripe/payment-link", {
+      const response = await fetch("/api/stripe/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chatId }),

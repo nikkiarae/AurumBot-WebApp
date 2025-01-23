@@ -67,7 +67,7 @@ export const subscribe = async (ctx: Context) => {
 
     // Send the Stripe payment link
     ctx.reply(
-      `🔗 Please complete your payment here:\n[Pay Now](${response})\n\nOnce done, you can return to this bot.`,
+      `🔗 Please complete your payment here:\n\n[Pay Now](${response})\n\nOnce done, you can return to this bot.`,
       { parse_mode: "Markdown" }
     );
   } catch (error) {
