@@ -1,4 +1,4 @@
-import { stripe, TELEGRAM_URL } from "@/lib/constants/config";
+import { stripe, STRIPE_PRICE_ID, TELEGRAM_URL } from "@/lib/constants/config";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       mode: "subscription", // Enable subscription mode
       line_items: [
         {
-          price: "price_1QdMXnEnurBpSIGA6vb43YKM", // Replace with your Stripe Price ID
+          price: STRIPE_PRICE_ID, // Replace with your Stripe Price ID
           quantity: 1,
         },
       ],
