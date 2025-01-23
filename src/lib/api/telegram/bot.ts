@@ -5,7 +5,7 @@ import dbConnect from "../../mongoose";
 import { sendDisclaimer } from "./utils/disclaimer";
 import { sendLearn } from "./utils/learn";
 import { sendSocialMedia } from "./utils/socialMedia";
-import { sendSubscription } from "./utils/subscription";
+import { checkStatus, sendSubscription, subscribe, unsubscribe } from "./utils/subscription";
 import { authMiddleware } from "./utils/middleware";
 import { sendStart } from "./utils/start";
 import { handleText } from "./utils/handleText";
@@ -117,6 +117,9 @@ bot.action("disclaimer", (ctx: Context) => sendDisclaimer(ctx));
 
 // SUBSCRIPTION
 bot.command("subscription", async (ctx: Context) => sendSubscription(ctx));
+bot.action("subscribe", (ctx: Context) => subscribe(ctx));
+bot.action("unsubscribe", (ctx: Context) => unsubscribe(ctx));
+bot.action("status", (ctx: Context) => checkStatus(ctx));
 
 // SOCIAL MEDIA
 bot.action("socialmedia", (ctx: Context) => sendSocialMedia(ctx));

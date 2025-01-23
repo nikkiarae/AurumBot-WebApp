@@ -2,7 +2,7 @@ import Subscriber from "@/models/Subscriber";
 import { TgMessage } from "@/types/general";
 import { Context } from "telegraf";
 
-export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
+export const notifySubscribers = async (ctx: Context, sender: string, message: TgMessage) => {
   try {
     const currentDate = new Date();
 
@@ -14,11 +14,12 @@ export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
     // Send notifications
     for (const subscriber of subscribers) {
       try {
-        ctx.replyWithPhoto(
-          message.photo, 
+        await ctx.telegram.sendMessage(
+          subscriber.chatId,
+          `👤 *Sender*: @${sender}\n\n${message.message}`,
           {
-            caption: message.message,
             parse_mode: "Markdown",
+            reply_markup: message.replyMarkup,
           }
         );
         console.log(`✅ Notification sent to: ${subscriber.chatId}`);

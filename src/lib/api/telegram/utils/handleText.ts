@@ -10,17 +10,15 @@ export const handleText = async (ctx: Context) => {
     const message = ctx.message;
 
   // Ensure the message and its text exist
-  if (!message || !("text" in message)) {
+  if (!message || !("text" in message) || !("from" in message)) {
     ctx.reply("This type of message is not supported. Please send text.");
     return;
   }
 
-  const { text } = message;
+  const { text, from } = message;
 
   const contractType = decodeMessage(text);
   let response: TgMessage | null = null
-
-  console.log(text)
 
   switch(contractType) {
     case ContractType.Sol: 
@@ -37,7 +35,7 @@ export const handleText = async (ctx: Context) => {
   if(!response) {
     ctx.reply("Invalid address format. Make sure to use the *Coin Address*, and not the *Pair Address*");
   } else {
-    await notifySubscribers(ctx, response)
+    await notifySubscribers(ctx, from.username!, response)
     response = null
   }
 };
