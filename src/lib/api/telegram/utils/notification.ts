@@ -14,12 +14,12 @@ export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
     // Send notifications
     for (const subscriber of subscribers) {
       try {
-        await ctx.telegram.sendMessage(
-          subscriber.chatId,
-          message.message,
+        ctx.replyWithPhoto(
+          message.photo, 
           {
+            caption: message.message,
             parse_mode: "Markdown",
-            reply_markup: message.replyMarkup,
+            reply_markup: message.replyMarkup
           }
         );
         console.log(`✅ Notification sent to: ${subscriber.chatId}`);

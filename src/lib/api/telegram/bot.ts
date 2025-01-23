@@ -125,6 +125,6 @@ bot.action("status", (ctx: Context) => checkStatus(ctx));
 bot.action("socialmedia", (ctx: Context) => sendSocialMedia(ctx));
 
 // Middleware to filter messages from the Admin
-bot.use((ctx: Context, next) => authMiddleware(ctx, 'admin', next));
+bot.use((ctx: Context, next) => authMiddleware(ctx, ['admin', 'influencer'], next));
 
 bot.on("text", (ctx: Context) => handleText(ctx));

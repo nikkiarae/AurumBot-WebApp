@@ -257,7 +257,7 @@ export const insiderSolToken = async (ca: string, sender: string): Promise<TgMes
   fullTokenData = addExtraTokenData(fullTokenData)
   fullTokenData = updateTokenTags(fullTokenData)
   const token = await saveOrUpdateToken(fullTokenData[0])
-  const message: TgMessage = formatMessage(token, sender, TokenType.Insider);
+  const message: TgMessage = formatMessage(token, sender);
   return message
 };
 

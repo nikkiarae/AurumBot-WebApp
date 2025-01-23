@@ -1,60 +1,59 @@
 import { Markup } from "telegraf";
-import { CompleteToken, ContractType, Social, TokenType, Website } from "@/types/token";
-import { NEXT_PUBLIC_BASE_URL } from "@/lib/constants/config";
+import { CompleteToken, ContractType, Social, Website } from "@/types/token";
 
-export const getHeader = (type: TokenType) => {
-  let header, photo
-  switch (type) {
-    case TokenType.New:
-      header = `🚀 *New Token Found!*\n\n`;
-      photo = '/assets/new.png';
-      break;
+// export const getHeader = (type: TokenType) => {
+//   let header, photo
+//   switch (type) {
+//     case TokenType.New:
+//       header = `🚀 *New Token Found!*\n\n`;
+//       photo = '/assets/new.png';
+//       break;
   
-    case TokenType.Boosted:
-      header = `🚀 *Token Just Boosted!*\n\n`;
-      photo = '/assets/boosted.png';
-      break;
+//     case TokenType.Boosted:
+//       header = `🚀 *Token Just Boosted!*\n\n`;
+//       photo = '/assets/boosted.png';
+//       break;
   
-    case TokenType.Golden:
-      header = `🌟 *Golden Token Found!*\n\n`;
-      photo = '/assets/golden.png';
-      break;
+//     case TokenType.Golden:
+//       header = `🌟 *Golden Token Found!*\n\n`;
+//       photo = '/assets/golden.png';
+//       break;
   
-    case TokenType.Emerging: 
-      header = `🏆 *Emerging Token Discovered!*\n\n`;
-      photo = '/assets/emerging.png';
-      break;
+//     case TokenType.Emerging: 
+//       header = `🏆 *Emerging Token Discovered!*\n\n`;
+//       photo = '/assets/emerging.png';
+//       break;
 
-    case TokenType.Insider:
-      header = `👑 *Insider Token Sent!*\n\n`;
-      photo = '/assets/insider.png';
-      break;
+//     case TokenType.Insider:
+//       header = `👑 *Insider Token Sent!*\n\n`;
+//       photo = '/assets/insider.png';
+//       break;
   
-    case TokenType.Unknown:
-    default:
-      header = ``;
-      photo = '';
-      break;
-  }
+//     case TokenType.Unknown:
+//     default:
+//       header = ``;
+//       photo = '';
+//       break;
+//   }
 
-  return { header, photo }
-}
+//   return { header, photo }
+// }
 
 // Notify users about an existing token
-export const formatMessage = (token: CompleteToken, sender: string, type: TokenType) => {
+export const formatMessage = (token: CompleteToken, sender: string) => {
     
-    const header = getHeader(type)
-    
+    // const header = getHeader(type)
     // const message = header.header +
+
     const message = 
       `👑 *${sender}*\n\n` +
-      `💡 *Pair*: ${token.baseToken.symbol} / ${token.baseToken.name}\n` + 
-      `📋 *CA*: ${token.baseToken.address}\n\n`+
+      `💡 *${token.baseToken.symbol} / ${token.baseToken.name}*\n` + 
+      `📋 *${token.baseToken.address}*\n\n`+
       `💵 *Market Cap*: $${Math.floor(token.marketCap).toLocaleString()}\n` +
       `📈 *Volume (1h)*: $${Math.floor(token.volume.h1).toLocaleString()}\n` +
       `💰 *Liquidity*: $${Math.floor(token.liquidity.usd).toLocaleString()}\n` +
       `⏳ *Age*: ${token.age.days} days, ${token.age.hours} hours, ${token.age.minutes} mins\n` +
-      `🧠 *Success Rating:* ${token.successRating}% \n`;
+      `🧠 *Success Rating:* ${token.successRating}% \n` + ` \n`;
 
     const websiteButton = token.info.websites.map((w: Website) => 
         Markup.button.url(`${w.label.charAt(0).toUpperCase() + w.label.slice(1)}`, `${w.url}`)
@@ -103,7 +102,7 @@ export const formatMessage = (token: CompleteToken, sender: string, type: TokenT
     return { 
         message, 
         replyMarkup, 
-        photo: `${NEXT_PUBLIC_BASE_URL}${header.photo}`
+        photo: token.info.header
     }
 } 
 

@@ -1,18 +1,39 @@
 import { stripe, TELEGRAM_URL } from "@/lib/constants/config";
 import { NextRequest, NextResponse } from "next/server";
+import Stripe from "stripe";
 
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     // Parse the request body
     const body = await req.json();
-    const { chatId } = body;
+    const { chatId, couponCode } = body; // Include couponCode in the request body
 
     if (!chatId) {
       return NextResponse.json(
         { error: "Missing required parameter: chatId" },
         { status: 400 }
       );
+    }
+
+    // Fetch the coupon or promotion code details (if provided)
+    let discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
+    if (couponCode) {
+      const promotionCodes = await stripe.promotionCodes.list({
+        code: couponCode, // Look up the code
+        active: true,     // Ensure it's active
+      });
+
+      if (promotionCodes.data.length > 0) {
+        discounts = [
+          { promotion_code: promotionCodes.data[0].id }, // Apply the promotion code
+        ];
+      } else {
+        return NextResponse.json(
+          { error: "Invalid or inactive coupon code" },
+          { status: 400 }
+        );
+      }
     }
 
     // Create a Stripe Checkout Session
@@ -25,6 +46,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
           quantity: 1,
         },
       ],
+      discounts, // Apply the discounts if any
       success_url: `${TELEGRAM_URL}?start=success`,
       cancel_url: `${TELEGRAM_URL}?start=cancel`,
       metadata: { chatId },

@@ -3,7 +3,7 @@ import Subscriber from "@/models/Subscriber";
 import { Context } from "telegraf";
 
 // Shared function to send the disclaimer message
-export const authMiddleware = async (ctx: Context, role: string, next: () => Promise<void>) => {
+export const authMiddleware = async (ctx: Context, role: string[], next: () => Promise<void>) => {
     const chatId = ctx.message?.from?.id;
     if (!chatId) {
       ctx.reply("Could not verify your identity.");
@@ -24,7 +24,7 @@ export const authMiddleware = async (ctx: Context, role: string, next: () => Pro
       }
   
       // Check if the user has the required role
-      if (user.role === role) {
+      if (role.includes(user.role)) {
         return next(); // Proceed to the next middleware
       } else {
         ctx.reply("You are not authorized to send messages.");
