@@ -14,7 +14,7 @@ export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
     // Send notifications
     for (const subscriber of subscribers) {
       try {
-        await ctx.replyWithPhoto(
+        ctx.replyWithPhoto(
           message.photo, 
           {
             caption: message.message,
