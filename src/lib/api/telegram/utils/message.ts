@@ -47,8 +47,8 @@ export const formatMessage = (token: CompleteToken, sender: string) => {
 
     const message = 
       `👑 *${sender}*\n\n` +
-      `💡 *${token.baseToken.symbol} / ${token.baseToken.name}*\n` + 
-      `📋 *${token.baseToken.address}*\n\n`+
+      `*${token.baseToken.symbol} / ${token.baseToken.name}*\n\n` + 
+      `*${token.baseToken.address}*\n\n`+
       `💵 *Market Cap*: $${Math.floor(token.marketCap).toLocaleString()}\n` +
       `📈 *Volume (1h)*: $${Math.floor(token.volume.h1).toLocaleString()}\n` +
       `💰 *Liquidity*: $${Math.floor(token.liquidity.usd).toLocaleString()}\n` +
