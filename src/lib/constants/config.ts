@@ -11,12 +11,14 @@ const MONGO_URI = process.env.MONGO_URI!
 const STRIPE_PUBLIC_KEY = process.env.STRIPE_PUBLIC_KEY!
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY!
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL!
 
 const stripe: Stripe = new Stripe(STRIPE_SECRET_KEY!);
 const bot = new Telegraf<CustomContext>(TELEGRAM_BOT_TOKEN!);
 
 
 export {
+    NEXT_PUBLIC_BASE_URL,
     TELEGRAM_BOT_TOKEN,
     POLLING_INTERVAL,
     TELEGRAM_URL,

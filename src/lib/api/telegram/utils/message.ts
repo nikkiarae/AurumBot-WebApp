@@ -1,5 +1,6 @@
 import { Markup } from "telegraf";
 import { CompleteToken, ContractType, Social, TokenType, Website } from "@/types/token";
+import path from "path";
 
 export const getHeader = (type: TokenType) => {
   let header, photo
@@ -100,7 +101,7 @@ export const formatMessage = (token: CompleteToken, type: TokenType) => {
     return { 
         message, 
         replyMarkup, 
-        photo: header.photo
+        photo: path.resolve("public", header.photo)
     }
 } 
 
