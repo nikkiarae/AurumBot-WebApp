@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { bot } from "@/lib/api/bot";
+import { bot } from "@/lib/api/telegram/bot";
 
 export async function GET() {
   return NextResponse.json({
