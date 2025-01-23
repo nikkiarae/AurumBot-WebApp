@@ -1,6 +1,7 @@
 import { Context } from "telegraf";
 import { decodeMessage } from "./message";
 import { ContractType } from "@/types/token";
+import { insiderSolToken } from "../solana/solanaCoins";
 
 // Shared function to send the disclaimer message
 export const handleText = async (ctx: Context) => {
@@ -19,8 +20,7 @@ export const handleText = async (ctx: Context) => {
 
   switch(contractType) {
     case ContractType.Sol: 
-        response = true
-    //   response = await insiderSolToken(text)
+      response = await insiderSolToken(text)
       break;
     case ContractType.Eth:
       response = true
