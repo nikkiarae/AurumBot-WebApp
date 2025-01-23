@@ -16,7 +16,7 @@ export const notifySubscribers = async (ctx: Context, sender: string, message: T
       try {
         await ctx.telegram.sendMessage(
           subscriber.chatId,
-          `👤 *Sender*: @${sender}\n\n${message.message}`,
+          `👑 @${sender}\n\n` + message.message,
           {
             parse_mode: "Markdown",
             reply_markup: message.replyMarkup,
