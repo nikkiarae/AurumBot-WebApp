@@ -1,4 +1,3 @@
-import path from "path";
 import { Markup } from "telegraf";
 import { CompleteToken, ContractType, Social, TokenType, Website } from "@/types/token";
 
@@ -7,27 +6,27 @@ export const getHeader = (type: TokenType) => {
   switch (type) {
     case TokenType.New:
       header = `🚀 *New Token Found!*\n\n`;
-      photo = '../../assets/new.png';
+      photo = '/assets/new.png';
       break;
   
     case TokenType.Boosted:
       header = `🚀 *Token Just Boosted!*\n\n`;
-      photo = '../../assets/boosted.png';
+      photo = '/assets/boosted.png';
       break;
   
     case TokenType.Golden:
       header = `🌟 *Golden Token Found!*\n\n`;
-      photo = '../../assets/golden.png';
+      photo = '/assets/golden.png';
       break;
   
     case TokenType.Emerging: 
       header = `🏆 *Emerging Token Discovered!*\n\n`;
-      photo = '../../assets/emerging.png';
+      photo = '/assets/emerging.png';
       break;
 
     case TokenType.Insider:
       header = `👑 *Insider Token Sent!*\n\n`;
-      photo = '../../assets/insider.png';
+      photo = '/assets/insider.png';
       break;
   
     case TokenType.Unknown:
@@ -101,7 +100,7 @@ export const formatMessage = (token: CompleteToken, type: TokenType) => {
     return { 
         message, 
         replyMarkup, 
-        photo: path.resolve(__dirname, header.photo) 
+        photo: header.photo
     }
 } 
 

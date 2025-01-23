@@ -265,7 +265,6 @@ export const insiderSolToken = async (ca: string) => {
   // Add additional data to help with filtering
   fullTokenData = addExtraTokenData(fullTokenData)
   fullTokenData = updateTokenTags(fullTokenData)
-  console.log(fullTokenData)
   const token = await saveOrUpdateToken(fullTokenData[0])
   await processToken(token, TokenType.Insider);
   return true

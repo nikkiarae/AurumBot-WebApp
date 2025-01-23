@@ -4,6 +4,7 @@ import { TgMessage } from "@/types/general";
 
 export const sendNotification = async (chatId: number, message: TgMessage ) => {
     try {
+      console.log(message)
       await bot.telegram.sendPhoto(
         chatId, 
         { source: message.photo }, 
