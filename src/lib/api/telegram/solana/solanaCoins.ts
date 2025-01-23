@@ -1,12 +1,12 @@
 import Token from "@/models/Token";
 import { formatMessage } from "@/lib/api/telegram/utils/message";
-import { notifySubscribers } from "@/lib/api/telegram/utils/notification";
 import ds from "@/lib/api/dexscreener";
 import { BasicToken, CompleteToken, TokenType } from "@/types/token";
 // import { retrievePumpfunTokens } from "../../pumpfun";
 import { calculateBuyToSellRatio } from "../utils/buyToSellRatio";
 import { calculateSuccessRating } from "../utils/successRating";
 import { getAge } from "../utils/age";
+import { TgMessage } from "@/types/general";
 // import { queryTokensByCriteria } from "../utils/criteria";
 
 
@@ -223,15 +223,6 @@ export const getTokenType = (tags: string[]): TokenType => {
   return TokenType.Unknown; // No specific type could be determined for this token.
 };
 
-export const processToken = async (token: CompleteToken, type: TokenType) => {
-  // Create Message
-  const message = formatMessage(token, type);
-
-  // Notify subscribers
-  await notifySubscribers(message);
-
-};
-
 // export const findPotentialSolTokens = async () => {
 //   // Gets tokens
 //   const addresses: BasicToken[] = await getAllSolTokens()
@@ -257,17 +248,17 @@ export const processToken = async (token: CompleteToken, type: TokenType) => {
 //   }
 // }
 
-export const insiderSolToken = async (ca: string) => {
+export const insiderSolToken = async (ca: string): Promise<TgMessage | null> => {
   let fullTokenData: CompleteToken[] = await getFullTokenData([{ address: ca, tags: ["Insider"]}]);
 
-  if (fullTokenData.length <  1) return false
+  if (fullTokenData.length <  1) return null
   
   // Add additional data to help with filtering
   fullTokenData = addExtraTokenData(fullTokenData)
   fullTokenData = updateTokenTags(fullTokenData)
   const token = await saveOrUpdateToken(fullTokenData[0])
-  await processToken(token, TokenType.Insider);
-  return true
+  const message: TgMessage = formatMessage(token, TokenType.Insider);
+  return message
 };
 
 

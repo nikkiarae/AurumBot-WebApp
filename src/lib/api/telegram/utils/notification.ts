@@ -1,26 +1,8 @@
-import {bot} from "@/lib/constants/config";
 import Subscriber from "@/models/Subscriber";
 import { TgMessage } from "@/types/general";
+import { Context } from "telegraf";
 
-export const sendNotification = async (chatId: number, message: TgMessage ) => {
-    try {
-      console.log(message)
-      await bot.telegram.sendPhoto(
-        chatId, 
-        { source: message.photo }, 
-        {
-          caption: message.message,
-          parse_mode: "Markdown",
-          reply_markup: message.replyMarkup,
-        }
-      );
-      console.log(`✅ Notification sent to chat ID: ${chatId}`);
-    } catch (error) {
-      console.error(`❌ Failed to send notification to chat ID: ${chatId}`, error);
-    }
-};
-
-export const notifySubscribers= async (message: TgMessage) => {
+export const notifySubscribers= async (ctx: Context, message: TgMessage) => {
   try {
     const currentDate = new Date();
 
@@ -32,7 +14,13 @@ export const notifySubscribers= async (message: TgMessage) => {
     // Send notifications
     for (const subscriber of subscribers) {
       try {
-        await sendNotification(Number(subscriber.chatId), message );
+        await ctx.replyWithPhoto(
+          message.photo, 
+          {
+            caption: message.message,
+            parse_mode: "Markdown",
+          }
+        );
         console.log(`✅ Notification sent to: ${subscriber.chatId}`);
       } catch (error) {
         console.error(`❌ Failed to send notification to ${subscriber.chatId}`, error);
