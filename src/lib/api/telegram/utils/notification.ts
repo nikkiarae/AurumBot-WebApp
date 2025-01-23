@@ -1,7 +1,8 @@
-import bot from "@/lib/config/bot";
+import {bot} from "@/lib/constants/config";
 import Subscriber from "@/models/Subscriber";
+import { TgMessage } from "@/types/general";
 
-export const sendNotification = async (chatId: number, message: any ) => {
+export const sendNotification = async (chatId: number, message: TgMessage ) => {
     try {
       await bot.telegram.sendPhoto(
         chatId, 
@@ -18,7 +19,7 @@ export const sendNotification = async (chatId: number, message: any ) => {
     }
 };
 
-export const notifySubscribers= async (message: any) => {
+export const notifySubscribers= async (message: TgMessage) => {
   try {
     const currentDate = new Date();
 
