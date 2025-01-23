@@ -27,9 +27,9 @@ const TxnsSchema = new mongoose.Schema<TokenTransactions>({
 })
 
 const LiquiditySchema = new mongoose.Schema<TokenLiquidity>({
-  usd: { type: Number, required: true },
-  base: { type: Number, required: true },
-  quote: { type: Number, required: true }
+  usd: { type: Number, required: true, default: 0 },
+  base: { type: Number, required: true, default: 0 },
+  quote: { type: Number, required: true, default: 0 }
 })
 
 const WebsiteSchema = new mongoose.Schema<Website>({
