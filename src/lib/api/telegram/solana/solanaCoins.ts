@@ -248,7 +248,7 @@ export const getTokenType = (tags: string[]): TokenType => {
 //   }
 // }
 
-export const insiderSolToken = async (ca: string): Promise<TgMessage | null> => {
+export const insiderSolToken = async (ca: string, sender: string): Promise<TgMessage | null> => {
   let fullTokenData: CompleteToken[] = await getFullTokenData([{ address: ca, tags: ["Insider"]}]);
 
   if (fullTokenData.length < 1) return null
@@ -257,7 +257,7 @@ export const insiderSolToken = async (ca: string): Promise<TgMessage | null> => 
   fullTokenData = addExtraTokenData(fullTokenData)
   fullTokenData = updateTokenTags(fullTokenData)
   const token = await saveOrUpdateToken(fullTokenData[0])
-  const message: TgMessage = formatMessage(token, TokenType.Insider);
+  const message: TgMessage = formatMessage(token, sender, TokenType.Insider);
   return message
 };
 

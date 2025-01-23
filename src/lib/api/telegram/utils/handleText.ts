@@ -22,7 +22,7 @@ export const handleText = async (ctx: Context) => {
 
   switch(contractType) {
     case ContractType.Sol: 
-      response = await insiderSolToken(text)
+      response = await insiderSolToken(text, from.username!)
       break;
     case ContractType.Eth:
       response = null
@@ -35,7 +35,7 @@ export const handleText = async (ctx: Context) => {
   if(!response) {
     ctx.reply("Invalid address format. Make sure to use the *Coin Address*, and not the *Pair Address*");
   } else {
-    await notifySubscribers(ctx, from.username!, response)
+    await notifySubscribers(ctx, response)
     response = null
   }
 };

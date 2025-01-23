@@ -41,18 +41,20 @@ export const getHeader = (type: TokenType) => {
 }
 
 // Notify users about an existing token
-export const formatMessage = (token: CompleteToken, type: TokenType) => {
+export const formatMessage = (token: CompleteToken, sender: string, type: TokenType) => {
     
     const header = getHeader(type)
     
-    const message = header.header +
-      `💡 *Pair*: ${token.baseToken.symbol} / ${token.baseToken.name}\n` +
-      `🧠 *Success Rating:* ${token.successRating}% \n` +
+    // const message = header.header +
+    const message = 
+      `👑 *${sender}*\n\n` +
+      `💡 *Pair*: ${token.baseToken.symbol} / ${token.baseToken.name}\n` + 
+      `📋 *CA*: ${token.baseToken.address}\n\n`+
       `💵 *Market Cap*: $${Math.floor(token.marketCap).toLocaleString()}\n` +
       `📈 *Volume (1h)*: $${Math.floor(token.volume.h1).toLocaleString()}\n` +
       `💰 *Liquidity*: $${Math.floor(token.liquidity.usd).toLocaleString()}\n` +
       `⏳ *Age*: ${token.age.days} days, ${token.age.hours} hours, ${token.age.minutes} mins\n` +
-      `📋 *CA*: ${token.baseToken.address}\n`;
+      `🧠 *Success Rating:* ${token.successRating}% \n`;
 
     const websiteButton = token.info.websites.map((w: Website) => 
         Markup.button.url(`${w.label.charAt(0).toUpperCase() + w.label.slice(1)}`, `${w.url}`)

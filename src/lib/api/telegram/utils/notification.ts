@@ -2,25 +2,7 @@ import Subscriber from "@/models/Subscriber";
 import { TgMessage } from "@/types/general";
 import { Context } from "telegraf";
 
-export const notifySubscribers = async (ctx: Context, sender: string, message: TgMessage) => {
-  const escapeMarkdown = (text: string): string =>
-    text
-      .replace(/_/g, "\\_")
-      .replace(/\*/g, "\\*")
-      .replace(/\[/g, "\\[")
-      .replace(/\]/g, "\\]")
-      .replace(/\(/g, "\\(")
-      .replace(/\)/g, "\\)")
-      .replace(/~/g, "\\~")
-      .replace(/`/g, "\\`")
-      .replace(/>/g, "\\>")
-      .replace(/#/g, "\\#")
-      .replace(/\+/g, "\\+")
-      .replace(/-/g, "\\-")
-      .replace(/=/g, "\\=")
-      .replace(/\|/g, "\\|")
-      .replace(/\./g, "\\.")
-      .replace(/!/g, "\\!");
+export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
   try {
     const currentDate = new Date();
 
@@ -34,7 +16,7 @@ export const notifySubscribers = async (ctx: Context, sender: string, message: T
       try {
         await ctx.telegram.sendMessage(
           subscriber.chatId,
-          `👑 @${escapeMarkdown(sender)}\n\n${escapeMarkdown(message.message)}`,
+          message.message,
           {
             parse_mode: "Markdown",
             reply_markup: message.replyMarkup,
