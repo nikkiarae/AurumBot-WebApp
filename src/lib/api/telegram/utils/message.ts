@@ -1,6 +1,7 @@
 import { Markup } from "telegraf";
 import { CompleteToken, ContractType, Social, TokenType, Website } from "@/types/token";
 import path from "path";
+import fs from "fs";
 
 export const getHeader = (type: TokenType) => {
   let header, photo
@@ -44,6 +45,13 @@ export const getHeader = (type: TokenType) => {
 export const formatMessage = (token: CompleteToken, type: TokenType) => {
     
     const header = getHeader(type)
+
+     // Resolve the file path relative to the root directory of your Next.js app
+      const photoPath = path.resolve(process.cwd(), "public", header.photo);
+
+      if (!fs.existsSync(photoPath)) {
+        throw new Error(`File not found at path: ${photoPath}`);
+      }
     
     const message = header.header +
       `💡 *Pair*: ${token.baseToken.symbol} / ${token.baseToken.name}\n` +
@@ -101,7 +109,7 @@ export const formatMessage = (token: CompleteToken, type: TokenType) => {
     return { 
         message, 
         replyMarkup, 
-        photo: path.resolve("public", header.photo)
+        photo: photoPath
     }
 } 
 
