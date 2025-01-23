@@ -1,6 +1,8 @@
+import { NEXT_PUBLIC_BASE_URL } from "../constants/config";
+
 export const generatePaymentLink = async (chatId: number): Promise<string | undefined> => {
     try {
-      const response = await fetch("/api/stripe/create-checkout-session", {
+      const response = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/stripe/create-checkout-session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chatId }),
@@ -19,7 +21,7 @@ export const generatePaymentLink = async (chatId: number): Promise<string | unde
 
 export const cancelSubscription = async (subscriptionId: string) => {
     try {
-      const response = await fetch("/api/stripe/cancel-subscription", {
+      const response = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/stripe/cancel-subscription`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

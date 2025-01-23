@@ -2,6 +2,13 @@ import { stripe, STRIPE_PRICE_ID, TELEGRAM_URL } from "@/lib/constants/config";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
+export async function GET() {
+  return NextResponse.json({
+    status: "Checkout Session is working!",
+    message: "This is the stripe checkout endpoint.",
+  });
+}
+
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {

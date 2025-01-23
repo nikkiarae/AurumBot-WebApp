@@ -65,6 +65,8 @@ export const subscribe = async (ctx: Context) => {
     // Request payment link from backend
     const response = await generatePaymentLink(chatId!)
 
+    console.log(response)
+
     // Send the Stripe payment link
     ctx.reply(
       `🔗 Please complete your payment here:\n\n[Pay Now](${response})\n\nOnce done, you can return to this bot.`,
