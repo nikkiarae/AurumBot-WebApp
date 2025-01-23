@@ -8,6 +8,7 @@ import { sendSocialMedia } from "./utils/socialMedia";
 import { sendSubscription } from "./utils/subscription";
 import { authMiddleware } from "./utils/middleware";
 import { sendStart } from "./utils/start";
+import { handleText } from "./utils/handleText";
 
 if (!TELEGRAM_BOT_TOKEN) {
   throw new Error(
@@ -121,8 +122,6 @@ bot.command("subscription", async (ctx: Context) => sendSubscription(ctx));
 bot.action("socialmedia", (ctx: Context) => sendSocialMedia(ctx));
 
 // Middleware to filter messages from the Admin
-bot.use((ctx, next) => authMiddleware(ctx, 'admin', next));
+bot.use((ctx: Context, next) => authMiddleware(ctx, 'admin', next));
 
-bot.on("text", (ctx) => {
-  ctx.reply(`You said: "${ctx.message.text}"`);
-});
+bot.on("text", (ctx: Context) => handleText(ctx));
