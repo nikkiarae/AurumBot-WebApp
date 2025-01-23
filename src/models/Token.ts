@@ -27,9 +27,9 @@ const TxnsSchema = new mongoose.Schema<TokenTransactions>({
 })
 
 const LiquiditySchema = new mongoose.Schema<TokenLiquidity>({
-  usd: { type: Number, required: true, default: 0 },
-  base: { type: Number, required: true, default: 0 },
-  quote: { type: Number, required: true, default: 0 }
+  usd: { type: Number, required: true },
+  base: { type: Number, required: true },
+  quote: { type: Number, required: true }
 })
 
 const WebsiteSchema = new mongoose.Schema<Website>({
@@ -105,7 +105,12 @@ const TokenSchema = new mongoose.Schema<CompleteToken>({
   },
   liquidity: {
     type: LiquiditySchema,
-    required: true
+    required: true,
+    default: {
+      usd: 0,
+      base: 0,
+      quote: 0,
+    }
   },
   fdv: { type: Number, required: true },
   marketCap: { type: Number, required: true },
