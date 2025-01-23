@@ -20,6 +20,8 @@ export const handleText = async (ctx: Context) => {
   const contractType = decodeMessage(text);
   let response: TgMessage | null = null
 
+  console.log(text)
+
   switch(contractType) {
     case ContractType.Sol: 
       response = await insiderSolToken(text)

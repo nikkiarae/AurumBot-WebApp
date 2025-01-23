@@ -2,7 +2,7 @@ import Subscriber from "@/models/Subscriber";
 import { TgMessage } from "@/types/general";
 import { Context } from "telegraf";
 
-export const notifySubscribers= async (ctx: Context, message: TgMessage) => {
+export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
   try {
     const currentDate = new Date();
 
