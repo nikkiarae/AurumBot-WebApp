@@ -7,6 +7,12 @@ const TokenDetailsSchema = new mongoose.Schema<TokenDetails>({
   symbol: { type: String , required: true},
 })
 
+const QuoteSchema = new mongoose.Schema<TokenDetails>({
+  address: { type: String, required: true },
+  name: { type: String, required: true },
+  symbol: { type: String , required: true},
+})
+
 const TransactionStatsSchema = new mongoose.Schema<TransactionStats>({
   buys: { type: Number, required: true },
   sells: { type: Number, required: true }
@@ -86,7 +92,7 @@ const TokenSchema = new mongoose.Schema<CompleteToken>({
     required: true 
   },
   quoteToken: { 
-    type: TokenDetailsSchema, 
+    type: QuoteSchema, 
     required: true 
   },
   priceNative: { type: String, required: true },
