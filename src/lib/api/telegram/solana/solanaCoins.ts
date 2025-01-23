@@ -251,7 +251,7 @@ export const getTokenType = (tags: string[]): TokenType => {
 export const insiderSolToken = async (ca: string): Promise<TgMessage | null> => {
   let fullTokenData: CompleteToken[] = await getFullTokenData([{ address: ca, tags: ["Insider"]}]);
 
-  if (fullTokenData.length <  1) return null
+  if (fullTokenData.length < 1) return null
   
   // Add additional data to help with filtering
   fullTokenData = addExtraTokenData(fullTokenData)

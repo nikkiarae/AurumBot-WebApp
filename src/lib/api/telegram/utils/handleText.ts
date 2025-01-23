@@ -35,6 +35,7 @@ export const handleText = async (ctx: Context) => {
   if(!response) {
     ctx.reply("Invalid address format. Make sure to use the *Coin Address*, and not the *Pair Address*");
   } else {
-    notifySubscribers(ctx, response)
+    await notifySubscribers(ctx, response)
+    response = null
   }
 };
