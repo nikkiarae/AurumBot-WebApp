@@ -1,10 +1,11 @@
 import dbConnect from "@/lib/mongoose";
 import Subscriber from "@/models/Subscriber";
-import { Context, Markup } from "telegraf";
-import { cancelSubscription, generatePaymentLink } from "../../stripe";
+import { Markup } from "telegraf";
+import { cancelSubscription } from "../../stripe";
+import { CustomContext } from "@/types/general";
 
 // Shared function to send the disclaimer message
-export const sendSubscription = async (ctx: Context) => {
+export const sendSubscription = async (ctx: CustomContext) => {
     const chatId = ctx.chat?.id;
 
   if (!chatId) {
@@ -56,30 +57,30 @@ export const sendSubscription = async (ctx: Context) => {
 };
 
 // Controller: Subscribe Subscriber
-export const subscribe = async (ctx: Context) => {
+export const subscribe = async (ctx: CustomContext) => {
   const chatId = ctx.chat?.id;
 
   try {
     await ctx.answerCbQuery();
 
-    // Request payment link from backend
-    const response = await generatePaymentLink(chatId!)
-
-    console.log(response)
-
-    // Send the Stripe payment link
     ctx.reply(
-      `🔗 Please complete your payment here:\n\n[Pay Now](${response})\n\nOnce done, you can return to this bot.`,
+      "💳 Do you have a coupon code?\n\n" +
+        "If yes, please type your coupon code now.\n" +
+        "If no, simply type 'SKIP'.",
       { parse_mode: "Markdown" }
     );
+
+    // Store the user's session state
+    ctx.session.state = "waiting_for_coupon";
+    ctx.session.chatId = chatId;
+
   } catch (error) {
-    console.error("Error creating payment session: ", error);
-    ctx.reply("❌ Failed to generate a payment link. Please try again later.");
+    console.error("Error Getting Coupon Code: ", error);
   }
 };
 
 // Controller: Unsubscribe Subscriber
-export const unsubscribe = async (ctx: Context) => {
+export const unsubscribe = async (ctx: CustomContext) => {
   const chatId = ctx.chat?.id;
 
   if (!chatId) {
@@ -120,7 +121,7 @@ export const unsubscribe = async (ctx: Context) => {
 };
 
 // Controller: Subscription Status
-export const checkStatus = async (ctx: Context) => {
+export const checkStatus = async (ctx: CustomContext) => {
     const chatId = ctx.chat?.id;
   
     try {

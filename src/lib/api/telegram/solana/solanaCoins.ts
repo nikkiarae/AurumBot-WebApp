@@ -189,6 +189,7 @@ export const updateTokenTags = (tokens: CompleteToken[]) => {
 
 export const saveOrUpdateToken = async (token: CompleteToken) => {
   try {
+    console.log(token)
     // Update or insert the token (upsert: true)
     const result = await Token.findOneAndUpdate(
       { pairAddress: token.pairAddress },
@@ -252,7 +253,7 @@ export const insiderSolToken = async (ca: string, sender: string): Promise<TgMes
   let fullTokenData: CompleteToken[] = await getFullTokenData([{ address: ca, tags: ["Insider"]}]);
 
   if (fullTokenData.length < 1) return null
-  
+
   // Add additional data to help with filtering
   fullTokenData = addExtraTokenData(fullTokenData)
   fullTokenData = updateTokenTags(fullTokenData)

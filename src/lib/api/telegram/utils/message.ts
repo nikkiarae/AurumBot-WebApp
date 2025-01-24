@@ -115,11 +115,6 @@ export const errorMessage = () => {
 
 export const decodeMessage = (message: string) => {
     try {
-      // Validate input is a string
-      if (typeof message !== "string") {
-        return "Message not accepted: Invalid input type.";
-      }
-  
       // Regular expressions for blockchain addresses
       const ethRegex = /^0x[a-fA-F0-9]{40}$/; // Ethereum or Base address format
       const solRegex = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/; // Solana address format
@@ -135,6 +130,6 @@ export const decodeMessage = (message: string) => {
   
     } catch (error) {
       console.error("Error decoding message:", error);
-      return "Message not accepted: An error occurred.";
+      return null
     }
 };

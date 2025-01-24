@@ -36,7 +36,7 @@ const RightSide: FC = () => {
                 objectFit: "contain",
             }}
         >
-             <source src="https://playpickleball.lon1.cdn.digitaloceanspaces.com/logos/video.MP4" type="video/mp4" />
+             <source src="/assets/video.MP4" type="video/mp4" />
         </video>
         </Box>
       </Card>

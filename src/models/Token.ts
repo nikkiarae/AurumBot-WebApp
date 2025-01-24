@@ -1,54 +1,54 @@
-import mongoose from "mongoose";
+import { Schema, model, models } from "mongoose";
 import { Age, Boost, CompleteToken, Social, TimeFrame, TokenDetails, TokenInfo, TokenLiquidity, TokenTransactions, TransactionStats, Website } from "@/types/token";
 
-const TokenDetailsSchema = new mongoose.Schema<TokenDetails>({
+const TokenDetailsSchema = new Schema<TokenDetails>({
   address: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   symbol: { type: String , required: true},
 })
 
-const QuoteSchema = new mongoose.Schema<TokenDetails>({
+const QuoteSchema = new Schema<TokenDetails>({
   address: { type: String, required: true },
   name: { type: String, required: true },
   symbol: { type: String , required: true},
 })
 
-const TransactionStatsSchema = new mongoose.Schema<TransactionStats>({
+const TransactionStatsSchema = new Schema<TransactionStats>({
   buys: { type: Number, required: true },
   sells: { type: Number, required: true }
 })
 
-const TimeFrameSchema = new mongoose.Schema<TimeFrame>({
+const TimeFrameSchema = new Schema<TimeFrame>({
   m5: { type: Number, required: true },
   h1: { type: Number, required: true },
   h6: { type: Number, required: true },
   h24: { type: Number, required: true }
 })
 
-const TxnsSchema = new mongoose.Schema<TokenTransactions>({
+const TxnsSchema = new Schema<TokenTransactions>({
   m5: { type: TransactionStatsSchema },
   h1: { type: TransactionStatsSchema },
   h6: { type: TransactionStatsSchema },
   h24: { type: TransactionStatsSchema }
 })
 
-const LiquiditySchema = new mongoose.Schema<TokenLiquidity>({
+const LiquiditySchema = new Schema<TokenLiquidity>({
   usd: { type: Number, required: true },
   base: { type: Number, required: true },
   quote: { type: Number, required: true }
 })
 
-const WebsiteSchema = new mongoose.Schema<Website>({
+const WebsiteSchema = new Schema<Website>({
   label: { type: String },
   url: { type: String }
 })
 
-const SocialSchema = new mongoose.Schema<Social>({
+const SocialSchema = new Schema<Social>({
   type: { type: String },
   url: { type: String }
 })
 
-const TokenInfoSchema = new mongoose.Schema<TokenInfo>({
+const TokenInfoSchema = new Schema<TokenInfo>({
   imageUrl: { type: String },
   header: { type: String },
   openGraph: { type: String },
@@ -60,14 +60,14 @@ const TokenInfoSchema = new mongoose.Schema<TokenInfo>({
   }]
 })
 
-const BoostsSchema = new mongoose.Schema<Boost>({
+const BoostsSchema = new Schema<Boost>({
   active: { 
     type: Number,
     default: 0
   },
 })
 
-const AgeSchema = new mongoose.Schema<Age>({
+const AgeSchema = new Schema<Age>({
   ageInMilliseconds: { type: Number },
   ageInHours: { type: Number },
   ageInMinutes: { type: Number },
@@ -77,7 +77,7 @@ const AgeSchema = new mongoose.Schema<Age>({
 })
 
 
-const TokenSchema = new mongoose.Schema<CompleteToken>({
+const TokenSchema = new Schema<CompleteToken>({
   chainId: { type: String, required: true },
   pairAddress: { 
     type: String, 
@@ -145,4 +145,6 @@ const TokenSchema = new mongoose.Schema<CompleteToken>({
 // Add a TTL index to automatically delete documents after 6 hours
 TokenSchema.index({ createdAt: 1 }, { expireAfterSeconds: 21600 }); // 6 hours
 
-export default mongoose.model("Token", TokenSchema);
+const Token = models.Token || model("Token", TokenSchema);
+
+export default Token

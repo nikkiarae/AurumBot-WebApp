@@ -1,4 +1,4 @@
-import { Telegraf, Markup, Context } from "telegraf";
+import { Telegraf, Markup, session } from "telegraf";
 import { TELEGRAM_BOT_TOKEN } from "@/lib/constants/config";
 import Subscriber from "@/models/Subscriber";
 import dbConnect from "../../mongoose";
@@ -6,9 +6,10 @@ import { sendDisclaimer } from "./utils/disclaimer";
 import { sendLearn } from "./utils/learn";
 import { sendSocialMedia } from "./utils/socialMedia";
 import { checkStatus, sendSubscription, subscribe, unsubscribe } from "./utils/subscription";
-import { authMiddleware } from "./utils/middleware";
+// import { authMiddleware } from "./utils/middleware";
 import { sendStart } from "./utils/start";
 import { handleText } from "./utils/handleText";
+import { CustomContext } from "@/types/general";
 
 if (!TELEGRAM_BOT_TOKEN) {
   throw new Error(
@@ -17,10 +18,18 @@ if (!TELEGRAM_BOT_TOKEN) {
 }
 
 // Create a Telegraf bot instance
-export const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
+export const bot = new Telegraf<CustomContext>(TELEGRAM_BOT_TOKEN);
 
-bot.start(async (ctx: Context) => {
-  const context = ctx as Context & { startPayload?: string };
+// Use session middleware
+bot.use(session({
+  defaultSession: () => ({
+    state: null,
+    chatId: null,
+  }),
+}));
+
+bot.start(async (ctx: CustomContext) => {
+  const context = ctx;
   const payload = context.startPayload;
 
   if (payload === "success") {
@@ -83,11 +92,14 @@ bot.start(async (ctx: Context) => {
           "✅ Trending opportunities in crypto 🚀\n" +
           "✅ Premium alerts that help you maximize profits 📊\n\n" +
           "🎯 *Don't Miss Out!* Subscribe now to unlock premium features and gain the edge you need in crypto trading! 🔔\n\n" +
-          "👉 Click /subscription to get started and become a *Aurum Bot* member today!",
+          "👉 Click *Subscribe Now* to get started and become a *Aurum Bot* member today!",
         {
           parse_mode: "Markdown",
           reply_markup: {
             inline_keyboard: [
+              [
+                Markup.button.callback("Subscribe Now", "subscribe"),
+              ],
               [
                 Markup.button.callback("Social Media", "socialmedia"),
                 Markup.button.callback("Disclaimer", "disclaimer"),
@@ -106,25 +118,25 @@ bot.start(async (ctx: Context) => {
 });
 
 // START
-bot.command("start", (ctx: Context) => sendStart(ctx));
+bot.command("start", (ctx: CustomContext) => sendStart(ctx));
 
 // LEARN
-bot.command("learn", (ctx: Context) => sendLearn(ctx));
+bot.command("learn", (ctx: CustomContext) => sendLearn(ctx));
 
 // DISCLAIMER
-bot.command("disclaimer", (ctx: Context) => sendDisclaimer(ctx));
-bot.action("disclaimer", (ctx: Context) => sendDisclaimer(ctx));
+bot.command("disclaimer", (ctx: CustomContext) => sendDisclaimer(ctx));
+bot.action("disclaimer", (ctx: CustomContext) => sendDisclaimer(ctx));
 
 // SUBSCRIPTION
-bot.command("subscription", async (ctx: Context) => sendSubscription(ctx));
-bot.action("subscribe", (ctx: Context) => subscribe(ctx));
-bot.action("unsubscribe", (ctx: Context) => unsubscribe(ctx));
-bot.action("status", (ctx: Context) => checkStatus(ctx));
+bot.command("subscription", async (ctx: CustomContext) => sendSubscription(ctx));
+bot.action("subscribe", (ctx: CustomContext) => subscribe(ctx));
+bot.action("unsubscribe", (ctx: CustomContext) => unsubscribe(ctx));
+bot.action("status", (ctx: CustomContext) => checkStatus(ctx));
 
 // SOCIAL MEDIA
-bot.action("socialmedia", (ctx: Context) => sendSocialMedia(ctx));
+bot.action("socialmedia", (ctx: CustomContext) => sendSocialMedia(ctx));
 
 // Middleware to filter messages from the Admin
-bot.use((ctx: Context, next) => authMiddleware(ctx, ['admin', 'influencer'], next));
+// bot.use((ctx: CustomContext, next) => authMiddleware(ctx, ['admin', 'influencer'], next));
 
-bot.on("text", (ctx: Context) => handleText(ctx));
+bot.on("text", (ctx: CustomContext) => handleText(ctx));

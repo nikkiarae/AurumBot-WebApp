@@ -26,19 +26,30 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     // Fetch the coupon or promotion code details (if provided)
     let discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
     if (couponCode) {
-      const promotionCodes = await stripe.promotionCodes.list({
-        code: couponCode, // Look up the code
-        active: true,     // Ensure it's active
-      });
-
-      if (promotionCodes.data.length > 0) {
-        discounts = [
-          { promotion_code: promotionCodes.data[0].id }, // Apply the promotion code
-        ];
-      } else {
+      try {
+        // Fetch all coupons from Stripe
+        const couponList = await stripe.coupons.list();
+    
+        // Find the coupon by its name
+        const matchingCoupon = couponList.data.find(
+          (coupon) => coupon.name === couponCode && coupon.valid
+        );
+    
+        if (matchingCoupon) {
+          // Apply the coupon by its ID
+          discounts = [{ coupon: matchingCoupon.id }];
+        } else {
+          // If no valid coupon matches the provided code
+          return NextResponse.json(
+            { error: "Invalid or inactive coupon code." },
+            { status: 400 }
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching or applying coupon code:", error);
         return NextResponse.json(
-          { error: "Invalid or inactive coupon code" },
-          { status: 400 }
+          { error: "Failed to process coupon code." },
+          { status: 500 }
         );
       }
     }

@@ -8,10 +8,11 @@ export async function POST(req: NextRequest) {
   const sig = req.headers.get("stripe-signature");
   let event: Stripe.Event;
 
-  // Connect to the database
-  await dbConnect();
-
   try {
+    
+    // Connect to the database
+    await dbConnect();
+
     // Parse the raw body of the request
     const rawBody = await req.text();
 
@@ -28,7 +29,6 @@ export async function POST(req: NextRequest) {
 
       const subscriptionEnd = new Date();
       subscriptionEnd.setMonth(subscriptionEnd.getMonth() + 1); // Add 1 month
-
       await Subscriber.findOneAndUpdate(
         { chatId },
         {
