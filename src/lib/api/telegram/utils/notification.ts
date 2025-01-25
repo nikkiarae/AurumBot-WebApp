@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/mongoose";
 import Subscriber from "@/models/Subscriber";
 import { TgMessage } from "@/types/general";
-import { Context } from "telegraf";
+import { Context, TelegramError } from "telegraf";
 
 export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
   try {
@@ -14,7 +14,7 @@ export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
     });
 
     console.log(`Found ${subscribers.length} active subscribers.`);
-    
+
     // Send notifications
     for (const subscriber of subscribers) {
       try {
@@ -30,7 +30,16 @@ export const notifySubscribers = async (ctx: Context, message: TgMessage) => {
         );
         console.log(`✅ Notification sent to: ${subscriber.chatId}`);
       } catch (error) {
-        console.error(`❌ Failed to send notification to ${subscriber.chatId}`, error);
+
+        const telegramError = error as TelegramError;
+
+        if (telegramError.response && telegramError.response.error_code === 403) {
+          // Handle case where the bot is blocked by the user
+          console.error(`❌ Failed to send notification to ${subscriber.chatId} (User blocked the bot)`);
+        } else {
+          // Log other types of errors
+          console.error(`❌ Failed to send notification to ${subscriber.chatId}:`, telegramError.message);
+        }
       }
     }
   } catch (error) {

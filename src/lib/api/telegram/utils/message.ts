@@ -1,5 +1,6 @@
 import { Markup } from "telegraf";
 import { CompleteToken, ContractType, Social, Website } from "@/types/token";
+import { NEXT_PUBLIC_BASE_URL } from "@/lib/constants/config";
 
 // export const getHeader = (type: TokenType) => {
 //   let header, photo
@@ -99,10 +100,12 @@ export const formatMessage = (token: CompleteToken, sender: string) => {
       inline_keyboard: inlineKeyboard,
     };
 
+    const header = token.info.header || `${NEXT_PUBLIC_BASE_URL}/assets/new_coin.png`
+    
     return { 
         message, 
         replyMarkup, 
-        photo: token.info.header
+        photo: header
     }
 } 
 
