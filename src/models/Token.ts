@@ -53,10 +53,12 @@ const TokenInfoSchema = new Schema<TokenInfo>({
   header: { type: String },
   openGraph: { type: String },
   websites: [{
-    type: WebsiteSchema
+    type: WebsiteSchema,
+    default: []
   }],
   socials: [{
-    type: SocialSchema
+    type: SocialSchema,
+    default: []
   }]
 })
 
