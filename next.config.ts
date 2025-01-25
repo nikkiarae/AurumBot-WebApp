@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
     STRIPE_SECRET_KEY: STRIPE_SECRET_KEY,
     STRIPE_WEBHOOK_SECRET: STRIPE_WEBHOOK_SECRET,
   },
+  images: {
+    domains: [
+      'upload.wikimedia.org', // Allow images from Wikimedia
+      'svgrepo.com',           // Allow images from SVG Repo
+    ],
+  },
 };
 
 export default nextConfig;

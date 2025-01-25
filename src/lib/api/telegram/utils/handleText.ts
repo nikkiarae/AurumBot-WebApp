@@ -86,9 +86,11 @@ export const handleText = async (ctx: CustomContext) => {
       ctx.reply(
         "❌ Invalid address format. Make sure to use the *Coin Address*, and not the *Pair Address*."
       );
+      return
     } else {
       await notifySubscribers(ctx, response);
       ctx.reply("✅ Token successfully shared with subscribers.");
+      return
     }
   } else {
     ctx.reply("❌ You are not authorized to send token addresses.");

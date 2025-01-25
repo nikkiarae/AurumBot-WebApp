@@ -10,7 +10,7 @@ const LeftSide: FC = () => {
         <Typography
           variant="h2"
           component="span"
-          color="#DAA520"
+          color='primary'
           fontWeight="bold"
         >
           Bot

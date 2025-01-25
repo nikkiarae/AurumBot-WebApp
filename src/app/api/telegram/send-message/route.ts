@@ -1,6 +1,5 @@
+import { TELEGRAM_BOT_TOKEN } from "@/lib/constants/config";
 import { NextRequest, NextResponse } from "next/server";
-
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
 export async function POST(req: NextRequest) {
   try {

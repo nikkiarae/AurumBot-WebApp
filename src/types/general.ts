@@ -10,12 +10,6 @@ export interface CustomContext extends Context {
     session: SessionData;
 }
 
-export interface Feature {
-    number: number
-    title: string,
-    description: string
-}
-
 export interface ReplyMarkup {
     parse_mode: string
     inlineKeyboard: string[]
@@ -27,3 +21,13 @@ export interface TgMessage {
 }
 
 export interface PaymentLinkResponse { success: boolean; data?: string; error?: string }
+
+export interface App {
+    icon: string
+    name: string
+    description: string
+    steps: string[]
+    link: string,
+    androidLink: string,
+    iosLink: string
+}
