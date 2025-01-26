@@ -1,6 +1,4 @@
-import { CustomContext } from "@/types/general";
 import Stripe from "stripe";
-import { Telegraf } from "telegraf";
 
 const IS_PRODUCTION = process.env.NODE_ENV! == 'production'
 const TELEGRAM_URL = process.env.TELEGRAM_URL!
@@ -14,8 +12,6 @@ const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL!
 const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID!
 
 const stripe: Stripe = new Stripe(STRIPE_SECRET_KEY!);
-const bot = new Telegraf<CustomContext>(TELEGRAM_BOT_TOKEN!);
-
 
 export {
     NEXT_PUBLIC_BASE_URL,
@@ -26,7 +22,6 @@ export {
     STRIPE_SECRET_KEY,
     STRIPE_WEBHOOK_SECRET,
     stripe,
-    bot,
     MONGO_URI,
     IS_PRODUCTION,
     STRIPE_PRICE_ID

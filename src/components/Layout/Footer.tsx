@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Container, Grid2, IconButton, Typography } from "@mui/material";
 import { FC } from "react";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";

@@ -63,7 +63,7 @@ const AppCard: FC<AppCardProps> = ({ app }) => {
             </Typography>
           </Stack>
           {/* App Store and Google Play Icons */}
-          <Stack direction="row" spacing={3} sx={{ marginLeft: 2 }}>
+          <Stack direction="row" spacing={{xs: 2, md: 3}} sx={{ marginLeft: 2 }}>
             {app.iosLink && (
               <IconButton
                 color="primary"

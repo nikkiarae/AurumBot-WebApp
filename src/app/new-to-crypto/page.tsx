@@ -5,7 +5,6 @@ import {
   Typography,
   Box,
   Button,
-  Container,
   Tabs,
   Tab,
   Grid2,
@@ -74,8 +73,7 @@ const OnboardingPage: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg">
-      {/* Page Title */}
+    <Box>
       <Box sx={{ textAlign: "center", pb: 2 }}>
         <Typography
           variant="h4"
@@ -117,7 +115,7 @@ const OnboardingPage: React.FC = () => {
       <Box sx={{ paddingTop: "20px" }}>
         {/* Step 1: Download Apps */}
         {selectedTab === 0 && (
-          <Grid2 container spacing={4}>
+          <Grid2 container spacing={{ xs: 2, sm: 4}}>
             {appData.map((app, idx) => (
               <Grid2 size={{ xs: 12 }} key={idx}>
                 <AppCard app={app} />
@@ -168,7 +166,7 @@ const OnboardingPage: React.FC = () => {
           </Box>
         )}
       </Box>
-    </Container>
+    </Box>
   );
 };
 

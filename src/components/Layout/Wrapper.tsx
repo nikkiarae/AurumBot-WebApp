@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC, ReactNode } from "react";
-import { CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material";
+import { CssBaseline, ThemeProvider, useMediaQuery, responsiveFontSizes } from "@mui/material";
 import { darkTheme } from "@/styles/darkTheme";
 import { lightTheme } from "@/styles/lightTheme";
 
@@ -16,7 +16,7 @@ const Wrapper: FC<WrapperProps> = ({ children }) => {
   // Apply the theme based on the user's preference
   const theme = prefersDarkMode ? darkTheme : lightTheme;
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={responsiveFontSizes(theme)}>
       <CssBaseline /> {/* This applies the theme styles globally */}
       {children}
     </ThemeProvider>

@@ -13,7 +13,7 @@ const Hero: FC = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            padding: { xs: `10px 20px 0 20px`, md: `50px 70px 0 70px` },
+            padding: { xs: `0px 10px 0 10px`, md: `50px 70px 0 70px` },
           }}
         >
           <Grid2 container spacing={{ xs: 4, md: 8 }} alignItems={"center"}>
