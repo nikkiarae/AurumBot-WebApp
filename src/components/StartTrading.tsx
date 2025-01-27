@@ -1,8 +1,10 @@
-import { Typography, Stack, Grid2, Alert } from "@mui/material";
+import { Typography, Stack, Grid2, Alert, Button } from "@mui/material";
 import Image from "next/image";
 import { FC } from "react";
 import CardWrapper from "./Cards/CardWrapper";
 import BoldText from "./BoldText";
+import Link from "next/link";
+import { TELEGRAM_URL } from "@/lib/constants/config";
 
 const StartTrading: FC = () => {
   return (
@@ -24,8 +26,12 @@ const StartTrading: FC = () => {
             >
               <Stack spacing={2}>
                 <Typography variant="h6" fontWeight={"bold"} gutterBottom>
-                  Notifications from AurumBot
+                  Notifications with AurumBot
                 </Typography>
+                <Typography variant="body1">
+                    To proceed and get new meme coins you will need to subscribe to AurumBot using Telegram.
+                </Typography>
+                <Button variant={'contained'} component={Link} href={TELEGRAM_URL} sx={{ color: "#fff", fontWeight: 'bold', textTransform: 'none'}}>Go To AurumBot</Button>
                 <Typography variant="body1">
                   Once you are subscribed to AurumBot through Telegram, you will begin receiving notifications of potential coins from trusted and well known crypto traders.
                 </Typography>
@@ -46,7 +52,6 @@ const StartTrading: FC = () => {
                         - Is the Market Cap low or high?
                     </Typography>
                 </Stack>
-                
               </Stack>
             </Stack>
           </Grid2>
