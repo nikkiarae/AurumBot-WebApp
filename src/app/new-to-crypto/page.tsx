@@ -85,7 +85,7 @@ const OnboardingPage: React.FC = () => {
         <Typography
           variant="h4"
           gutterBottom
-          sx={{ fontWeight: "bold", color: "#fff" }}
+          sx={{ fontWeight: "bold" }}
         >
           Getting Started with Crypto
         </Typography>
@@ -93,7 +93,7 @@ const OnboardingPage: React.FC = () => {
           variant="h6"
           color="textSecondary"
           gutterBottom
-          sx={{ margin: "10px 0", color: "#fff" }}
+          sx={{ margin: "10px 0" }}
         >
           Follow the steps below to get started with the basic apps required for
           crypto trading and communication.
