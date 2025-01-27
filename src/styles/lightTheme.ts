@@ -6,17 +6,14 @@ export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: blue[500],
+      main: "#DAA520",
     },
     secondary: {
-      main: '#DAA520'
-  },
-    background: {
-      default: grey[100],
-      paper: '#ffffff',
+      main: blue[500],
     },
-    text: {
-      primary: '#000000',
+    background: {
+      default: grey[200],
+      paper: '#D0D0D0',
     },
   },
   typography: {

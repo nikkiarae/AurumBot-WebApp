@@ -16,7 +16,7 @@ const RightSide: FC = () => {
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "20px",
-        backgroundColor: "#1c1c1c", // Matches the black theme
+        backgroundColor: theme.palette.background.paper, // Matches the black theme
         border: `3px solid ${theme.palette.primary.main}`, // Gold border for style
         margin: "0 auto", // Centers it horizontally
       }}
@@ -41,7 +41,7 @@ const RightSide: FC = () => {
             pointerEvents: "none",
           }}
         >
-          <source src="/assets/video.mov" type="video/mp4" />
+          <source src="/assets/video.MP4" type="video/mp4" />
         </video>
       </Box>
     </Card>

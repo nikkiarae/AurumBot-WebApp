@@ -11,6 +11,7 @@ import {
   useMediaQuery,
   Drawer,
   Divider,
+  useTheme,
 } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,6 +19,7 @@ import { FC, useState } from "react";
 import { Menu as MenuIcon } from "@mui/icons-material";
 
 const Header: FC = () => {
+  const theme = useTheme()
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   // Check if the screen size is small (mobile view)
@@ -30,7 +32,7 @@ const Header: FC = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{ background: "rgba(0,0,0,0.8)" }}>
+      <AppBar position="static" sx={{ backgroundColor: theme.palette.background.paper }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           {/* Left Side (Logo and Name) */}
           <Stack direction={"row"} spacing={1} alignItems={'center'} component={Link} href={'/'} onClick={() => toggleDrawer(false)}>

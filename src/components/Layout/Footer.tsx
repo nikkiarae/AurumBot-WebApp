@@ -1,18 +1,19 @@
 "use client";
 
-import { Box, Container, Grid2, IconButton, Typography } from "@mui/material";
+import { Box, Container, Grid2, IconButton, Typography, useTheme } from "@mui/material";
 import { FC } from "react";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";
 
 const Footer: FC = () => {
+  const theme = useTheme();
   return (
     <Box
       component="footer"
+      
       sx={{
-        background: "rgba(0,0,0,0.9)",
-        color: "white",
         py: 4,
         mt: "auto",
+        backgroundColor: theme.palette.background.paper
       }}
     >
       <Container maxWidth="lg">

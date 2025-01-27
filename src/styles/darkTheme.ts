@@ -15,9 +15,6 @@ export const darkTheme = createTheme({
       default: grey[900],
       paper: "#1a1a1a",
     },
-    text: {
-      primary: "#ffffff",
-    },
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',

@@ -5,7 +5,7 @@ import { FaStripe } from "react-icons/fa6";
 const LeftSide: FC = () => {
   return (
     <Box sx={{ textAlign: "center" }}>
-      <Typography variant="h2" sx={{ fontWeight: "bold", color: "#fff" }}>
+      <Typography variant="h2" sx={{ fontWeight: "bold" }}>
         Aurum{" "}
         <Typography
           variant="h2"
@@ -18,7 +18,7 @@ const LeftSide: FC = () => {
       </Typography>
       <Typography
         variant="h4"
-        sx={{ margin: "10px 0", color: "#fff", }}
+        sx={{ margin: "10px 0" }}
       >
         Your golden gateway to meme coin opportunities
       </Typography>
@@ -35,7 +35,7 @@ const LeftSide: FC = () => {
       </Typography>
       <Typography
         variant="h4"
-        sx={{ margin: "10px 0", fontWeight: "bold", color: "#fff" }}
+        sx={{ margin: "10px 0", fontWeight: "bold"}}
       >
         <Typography
           variant="h4"
@@ -50,7 +50,6 @@ const LeftSide: FC = () => {
         <Typography
           variant="h5"
           component="span"
-          color="#fff"
           fontWeight="bold"
         >
           /mth
