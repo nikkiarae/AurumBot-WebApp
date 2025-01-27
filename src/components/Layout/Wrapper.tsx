@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC, ReactNode } from "react";
-import { CssBaseline, ThemeProvider, useMediaQuery, responsiveFontSizes } from "@mui/material";
+import { CssBaseline, ThemeProvider, useMediaQuery, responsiveFontSizes, Box } from "@mui/material";
 import { darkTheme } from "@/styles/darkTheme";
 import { lightTheme } from "@/styles/lightTheme";
 
@@ -18,7 +18,9 @@ const Wrapper: FC<WrapperProps> = ({ children }) => {
   return (
     <ThemeProvider theme={responsiveFontSizes(theme)}>
       <CssBaseline /> {/* This applies the theme styles globally */}
-      {children}
+      <Box display="flex" flexDirection={'column'} sx={{height: '100%'}}>
+        {children}
+      </Box>
     </ThemeProvider>
   );
 };

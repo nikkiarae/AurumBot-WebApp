@@ -8,9 +8,13 @@ import {
   Tabs,
   Tab,
   Grid2,
+  Stack,
 } from "@mui/material";
 import AppCard from "@/components/Cards/AppCard";
 import { App } from "@/types/general";
+import ConnectWallets from "@/components/ConnectWallets";
+import StartTrading from "@/components/StartTrading";
+import AddFunds from "@/components/AddFunds";
 
 // Data for each app
 const appData: App[] = [
@@ -29,7 +33,8 @@ const appData: App[] = [
     ],
     icon: "https://store-images.s-microsoft.com/image/apps.42831.782f1ae5-d3e1-44a8-89a5-b81f4d64daba.a17bea0c-8b72-4e6b-b160-63e2ec2dd58e.dd9bf24d-35a5-410b-b512-bef379ed0589",
     iosLink: "https://apps.apple.com/app/phantom-wallet/id1600832604", // iOS App Store link
-    androidLink: "https://play.google.com/store/apps/details?id=com.phantom.app", // Android Google Play link
+    androidLink:
+      "https://play.google.com/store/apps/details?id=com.phantom.app", // Android Google Play link
     link: "https://www.example.com",
   },
   {
@@ -45,7 +50,8 @@ const appData: App[] = [
     ],
     icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png",
     iosLink: "https://apps.apple.com/app/telegram-messenger/id686449807", // iOS App Store link
-    androidLink: "https://play.google.com/store/apps/details?id=org.telegram.messenger", // Android Google Play link
+    androidLink:
+      "https://play.google.com/store/apps/details?id=org.telegram.messenger", // Android Google Play link
     link: "https://www.example.com",
   },
   {
@@ -60,7 +66,8 @@ const appData: App[] = [
     ],
     icon: "https://i.pinimg.com/736x/e6/2d/e6/e62de698746dfcb09d2d64f85371eed1.jpg",
     iosLink: "https://apps.apple.com/app/dexscreener/id1547019563", // iOS App Store link
-    androidLink: "https://play.google.com/store/apps/details?id=com.dexscreener.dexscreener", // Android Google Play link
+    androidLink:
+      "https://play.google.com/store/apps/details?id=com.dexscreener.dexscreener", // Android Google Play link
     link: "https://www.example.com",
   },
 ];
@@ -74,7 +81,7 @@ const OnboardingPage: React.FC = () => {
 
   return (
     <Box>
-      <Box sx={{ textAlign: "center", pb: 2 }}>
+      <Box sx={{ textAlign: "center", pb: {xs: 1, md: 2} }}>
         <Typography
           variant="h4"
           gutterBottom
@@ -108,62 +115,80 @@ const OnboardingPage: React.FC = () => {
       >
         <Tab label="Download Apps" />
         <Tab label="Connect Wallet" />
+        <Tab label="Add Funds" />
         <Tab label="Start Trading" />
       </Tabs>
 
       {/* Tab Content */}
-      <Box sx={{ paddingTop: "20px" }}>
+      <Box sx={{ paddingTop: { xs: 1, md: 2 } }}>
         {/* Step 1: Download Apps */}
         {selectedTab === 0 && (
-          <Grid2 container spacing={{ xs: 2, sm: 4}}>
-            {appData.map((app, idx) => (
-              <Grid2 size={{ xs: 12 }} key={idx}>
-                <AppCard app={app} />
-              </Grid2>
-            ))}
-          </Grid2>
+          <Stack spacing={{ xs: 2, sm: 4 }} sx={{ alignItems: "center" }}>
+            <Grid2 container spacing={{ xs: 2, sm: 4 }}>
+              {appData.map((app, idx) => (
+                <Grid2 size={{ xs: 12 }} key={idx}>
+                  <AppCard app={app} />
+                </Grid2>
+              ))}
+            </Grid2>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ marginTop: "16px", padding: "8px 16px", color: "#fff", fontWeight: 'bold' }}
+              onClick={() => setSelectedTab(1)} // Move to next step
+            >
+              Next Step
+            </Button>
+          </Stack>
         )}
 
         {/* Step 2: Connect Wallet */}
         {selectedTab === 1 && (
-          <Box sx={{ textAlign: "center" }}>
-            <Typography variant="h5" gutterBottom>
-              Connect Your Phantom Wallet
-            </Typography>
-            <Typography variant="body1" paragraph>
-              Open your Phantom Wallet and connect it to your Dexscreener
-              account to begin trading.
-            </Typography>
+          <Stack spacing={{ xs: 2, sm: 4 }} sx={{ alignItems: "center" }}>
+            <ConnectWallets />
             <Button
               variant="contained"
               color="primary"
-              sx={{ marginTop: "16px", padding: "8px 16px" }}
+              fullWidth
+              sx={{ marginTop: "16px", padding: "8px 16px", color: "#fff", fontWeight: 'bold' }}
               onClick={() => setSelectedTab(2)} // Move to next step
             >
               Next Step
             </Button>
-          </Box>
+          </Stack>
         )}
 
-        {/* Step 3: Start Trading */}
+        {/* Step 3: Add Funds */}
         {selectedTab === 2 && (
-          <Box sx={{ textAlign: "center" }}>
-            <Typography variant="h5" gutterBottom>
-              Start Trading on Dexscreener
-            </Typography>
-            <Typography variant="body1" paragraph>
-              Now that your wallet is connected, you can start trading. Use
-              Dexscreener to track coins and tokens.
-            </Typography>
+          <Stack spacing={{ xs: 2, sm: 4 }} sx={{ alignItems: "center" }}>
+            <AddFunds />
             <Button
               variant="contained"
               color="primary"
-              sx={{ marginTop: "16px", padding: "8px 16px" }}
+              fullWidth
+              sx={{ marginTop: "16px", padding: "8px 16px", color: "#fff", fontWeight: 'bold' }}
+              onClick={() => setSelectedTab(3)} // Move to next step
+            >
+              Next Step
+            </Button>
+          </Stack>
+        )}
+
+        {/* Step 4: Start Trading */}
+        {selectedTab === 3 && (
+          <Stack spacing={{ xs: 2, sm: 4 }} sx={{ alignItems: "center" }}>
+            <StartTrading />
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ marginTop: "16px", padding: "8px 16px", color: "#fff", fontWeight: 'bold' }}
               onClick={() => setSelectedTab(0)} // Optionally loop back to step 1 or finish
             >
               Finish Setup
             </Button>
-          </Box>
+          </Stack>
         )}
       </Box>
     </Box>

@@ -12,7 +12,7 @@ const CardWrapper: FC<PropsWithChildren> = ({ children }) => {
       elevation={2}
       sx={{
         textAlign: "center",
-        padding: "24px",
+        padding: {xs: 1, md: 2 },
         borderRadius: 4,
         height: "100%",
         border: `3px solid ${borderColor}`, // Subtle border

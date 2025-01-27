@@ -46,7 +46,7 @@ const LeftSide: FC = () => {
         >
           Only{" "}
         </Typography>
-        $14.99
+        $19.99
         <Typography
           variant="h5"
           component="span"

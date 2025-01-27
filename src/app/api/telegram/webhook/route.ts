@@ -18,7 +18,7 @@ if (!TELEGRAM_BOT_TOKEN) {
 }
 
 // Create a Telegraf bot instance
-export const bot = new Telegraf<CustomContext>(TELEGRAM_BOT_TOKEN);
+const bot = new Telegraf<CustomContext>(TELEGRAM_BOT_TOKEN);
 
 export async function GET() {
   return NextResponse.json({

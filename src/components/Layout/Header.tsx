@@ -33,7 +33,7 @@ const Header: FC = () => {
       <AppBar position="static" sx={{ background: "rgba(0,0,0,0.8)" }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           {/* Left Side (Logo and Name) */}
-          <Stack direction={"row"} spacing={1} alignItems={'center'}>
+          <Stack direction={"row"} spacing={1} alignItems={'center'} component={Link} href={'/'} onClick={() => toggleDrawer(false)}>
                 <Image
                 src="/assets/logo.png"  // Path to logo image in public/assets
                 alt="AurumBot Logo"

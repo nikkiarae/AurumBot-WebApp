@@ -8,7 +8,7 @@ const RightSide: FC = () => {
         sx={{
           width: "100%", // Responsive width
           maxWidth: 390, // Max width to match iPhone 13 Pro
-          aspectRatio: "390 / 844", // Maintains the 9:19 aspect ratio
+          aspectRatio: "390 / 774", // Maintains the 9:19 aspect ratio
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -36,7 +36,7 @@ const RightSide: FC = () => {
                 objectFit: "contain",
             }}
         >
-             <source src="/assets/video.MP4" type="video/mp4" />
+             <source src="/assets/video.mov" type="video/mp4" />
         </video>
         </Box>
       </Card>

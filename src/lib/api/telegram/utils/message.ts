@@ -2,49 +2,8 @@ import { Markup } from "telegraf";
 import { CompleteToken, ContractType, Social, Website } from "@/types/token";
 import { NEXT_PUBLIC_BASE_URL } from "@/lib/constants/config";
 
-// export const getHeader = (type: TokenType) => {
-//   let header, photo
-//   switch (type) {
-//     case TokenType.New:
-//       header = `🚀 *New Token Found!*\n\n`;
-//       photo = '/assets/new.png';
-//       break;
-  
-//     case TokenType.Boosted:
-//       header = `🚀 *Token Just Boosted!*\n\n`;
-//       photo = '/assets/boosted.png';
-//       break;
-  
-//     case TokenType.Golden:
-//       header = `🌟 *Golden Token Found!*\n\n`;
-//       photo = '/assets/golden.png';
-//       break;
-  
-//     case TokenType.Emerging: 
-//       header = `🏆 *Emerging Token Discovered!*\n\n`;
-//       photo = '/assets/emerging.png';
-//       break;
-
-//     case TokenType.Insider:
-//       header = `👑 *Insider Token Sent!*\n\n`;
-//       photo = '/assets/insider.png';
-//       break;
-  
-//     case TokenType.Unknown:
-//     default:
-//       header = ``;
-//       photo = '';
-//       break;
-//   }
-
-//   return { header, photo }
-// }
-
 // Notify users about an existing token
 export const formatMessage = (token: CompleteToken, sender: string) => {
-    
-    // const header = getHeader(type)
-    // const message = header.header +
 
     const message = 
       `👑 *${sender}*\n\n` +
@@ -94,7 +53,15 @@ export const formatMessage = (token: CompleteToken, sender: string) => {
         Markup.button.url("Gecko", `https://www.geckoterminal.com/solana/pools/${token.baseToken.address}`),
       ]
     );
-    
+
+    // Conditionally add the Socials section if infoButtons has more than 1 button
+    if (infoButtons.length > 1) {
+      inlineKeyboard.push(
+        [{ text: "🌐 Socials", callback_data: "socials_section" }], // Socials header
+        infoButtons,
+      );
+    }
+
     const replyMarkup = {
       parse_mode: "Markdown",
       inline_keyboard: inlineKeyboard,
