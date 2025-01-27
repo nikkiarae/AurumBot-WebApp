@@ -6,7 +6,7 @@ const LeftSide: FC = () => {
   return (
     <Box sx={{ textAlign: "center" }}>
       <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-        Aurum{" "}
+        Aurum
         <Typography
           variant="h2"
           component="span"
